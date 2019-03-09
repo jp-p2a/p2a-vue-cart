@@ -4,6 +4,14 @@
          :key="product.id">
       {{ product.name }}
     </div>
+
+    <div>
+      <button>
+        <router-link :to="{ name: 'billingInfo' }">
+          Checkout
+        </router-link>
+      </button>
+    </div>
   </div>
 </template>
 
