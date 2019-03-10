@@ -88,9 +88,9 @@ export default {
     data() {
       return {
           customerInfo: {
-              firstName: "Paul",
-              lastName: "Mugabo",
-              zipCode: "24450"
+              firstName: null,
+              lastName: null,
+              zipCode: null
           },
       }
     },

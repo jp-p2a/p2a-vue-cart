@@ -25,13 +25,7 @@ export default new Router({
       {
           path: '/billingInfo',
           name: ROUTE_NAMES.BILLING_INFO,
-          // route level code-splitting
-          // this generates a separate chunk (customerInfo.[hash].js) for this route
-          // which is lazy-loaded when the route is visited.
-          component: BillingInfo,//() => import(/* webpackChunkName: "billingInfo" */ '@/components/BillingInfo.vue'),
-          props: route => ({
-              billingId: parseInt(route.params.billingId, 10)
-          }),
+          component: BillingInfo,
           meta: {
               next: ROUTE_NAMES.CONFIRM_PURCHASE,
               previous: ROUTE_NAMES.CART
@@ -41,9 +35,6 @@ export default new Router({
           path: '/confirmPurchase',
           name: ROUTE_NAMES.CONFIRM_PURCHASE,
           component: ConfirmPurchase,
-          props: route => ({
-              orderId: parseInt(route.params.orderId, 10)
-          }),
           meta: {
               next: ROUTE_NAMES.THANK_YOU,
               previous: ROUTE_NAMES.BILLING_INFO
@@ -63,8 +54,10 @@ export default new Router({
           }
       },
 
-      { path: "*",
-        component: NotFound //() => import(/* webpackChunkName: "notFound" */ '@/components/NotFound.vue')
+      {
+        // This route will be resolved for any Routes not matched
+        path: "*",
+        component: NotFound
        }
   ]
 })

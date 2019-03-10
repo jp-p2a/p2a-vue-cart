@@ -24,11 +24,6 @@
               <span>Billing Info</span>
             </router-link>
           </h3>
-          <!--<svg-->
-                  <!--xmlns="http://www.w3.org/2000/svg"-->
-                  <!--class="navigation__breadcrumbActiveIcon">-->
-            <!--<use :xlink:href="getBreadCrumbSvg(routeNames.BILLING_INFO)"/>-->
-          <!--</svg>-->
         </div>
 
         <div>
@@ -40,11 +35,6 @@
               <span>Confirm Purchase </span>
             </router-link>
           </h3>
-          <!--<svg-->
-                  <!--xmlns="http://www.w3.org/2000/svg"-->
-                  <!--class="navigation__breadcrumbActiveIcon">-->
-            <!--<use :xlink:href="getBreadCrumbSvg(routeNames.CONFIRM_PURCHASE)"/>-->
-          <!--</svg>-->
         </div>
 
         <div v-if="orderId">
@@ -56,11 +46,6 @@
               <span>Thank You</span>
             </router-link>
           </h3>
-          <!--<svg-->
-                  <!--xmlns="http://www.w3.org/2000/svg"-->
-                  <!--class="navigation__breadcrumbInactiveIcon">-->
-            <!--<use :xlink:href="getBreadCrumbSvg(routeNames.THANK_YOU)"/>-->
-          <!--</svg>-->
         </div>
 
       </div>

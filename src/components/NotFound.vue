@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    The URL you are looking for could not be found. Please try again!
+    The {{ currentRoutePath }} URL could not be found. Please try again!
   </div>
 </template>
 
@@ -8,5 +8,10 @@
 
 export default {
   name: 'NotFound',
+    computed: {
+        currentRoutePath() {
+            return this.$route.fullPath;
+        },
+    },
 }
 </script>
