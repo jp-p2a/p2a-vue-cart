@@ -12,7 +12,8 @@ export default {
     computed: {
         ...mapGetters({
             orderId: 'currentOrderId',
-            selectedProducts: 'selectedProducts'
+            selectedProducts: 'selectedProducts',
+            billingId: 'billingId'
         }),
         activeRouteName() {
             return this.$route.name;

@@ -1,5 +1,6 @@
 require('babel-polyfill');
 import {
+    uniqueId as _uniqueId,
     cloneDeep as _cloneDeep,
     isEmpty as _isEmpty
 } from "lodash";
@@ -18,25 +19,25 @@ mock.onGet(`/${ENDPOINTS.PRODUCTS}`).reply(200, {
     data: [
 
         {
-            id: 1223,
+            id: _uniqueId(),
             name: "Mac",
             price: 1200
         },
 
         {
-            id: 133,
+            id: _uniqueId(),
             name: "Pixel 3",
             price: 1000
         },
 
         {
-            id: 948,
+            id: _uniqueId(),
             name: "iPhone 10",
             price: 950
         },
 
         {
-            id: 444,
+            id: _uniqueId(),
             name: "Samsung 10",
             price: 750
         },
@@ -47,13 +48,20 @@ mock.onGet(`/${ENDPOINTS.PRODUCTS}`).reply(200, {
 // Mock any Post request to /products
 // arguments for reply are (status, data, headers)
 mock.onPost(`/${ENDPOINTS.BILLING_INFO}`).reply(200, {
-    data: [
-
-        {
-            billingId: 444,
-        },
-    ]
+    data:  {
+        billingId: _uniqueId(),
+    },
 });
+
+
+
+mock.onPost(`/${ENDPOINTS.ORDER}`).reply(200, {
+    data:  {
+        orderId: _uniqueId(),
+    },
+});
+
+
 
 
 

@@ -29,6 +29,9 @@ export default new Router({
           // this generates a separate chunk (customerInfo.[hash].js) for this route
           // which is lazy-loaded when the route is visited.
           component: BillingInfo,//() => import(/* webpackChunkName: "billingInfo" */ '@/components/BillingInfo.vue'),
+          props: route => ({
+              billingId: parseInt(route.params.billingId, 10)
+          }),
           meta: {
               next: ROUTE_NAMES.CONFIRM_PURCHASE,
               previous: ROUTE_NAMES.CART
@@ -45,22 +48,19 @@ export default new Router({
               next: ROUTE_NAMES.THANK_YOU,
               previous: ROUTE_NAMES.BILLING_INFO
           },
-          children: [
-              {
-                  path: '/:orderId/thank-you',
-                  name: ROUTE_NAMES.THANK_YOU,
-                  components: {
-                      confirmPurchase: ThankYou
-                  },
-                  props: route => ({
-                      orderId: parseInt(route.params.orderId, 10)
-                  }),
-                  meta: {
-                      next: null,
-                      previous: ROUTE_NAMES.CONFIRM_PURCHASE
-                  }
-              },
-          ]
+      },
+
+      {
+          path: '/:orderId/thank-you',
+          name: ROUTE_NAMES.THANK_YOU,
+          component: ThankYou,
+          props: route => ({
+              orderId: parseInt(route.params.orderId, 10)
+          }),
+          meta: {
+              next: null,
+              previous: ROUTE_NAMES.CONFIRM_PURCHASE
+          }
       },
 
       { path: "*",

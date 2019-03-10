@@ -47,7 +47,7 @@
           <!--</svg>-->
         </div>
 
-        <div>
+        <div v-if="orderId">
           <h3>
             <router-link
                     :class="getActiveClass(routeNames.THANK_YOU)"
@@ -127,7 +127,6 @@ export default {
 
   .navigation__container--fixed {
     position: absolute;
-    width: 100%;
     z-index: 3;
     top: 0;
   }

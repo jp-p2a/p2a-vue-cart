@@ -1,7 +1,6 @@
 <template>
   <div>
 
-
     <div v-if="errorMessage"> {{ errorMessage }}</div>
 
     <div class="form-container">
@@ -43,6 +42,7 @@
         forEach as _forEach,
         isEmpty as _isEmpty
     } from "lodash";
+    import { mapActions, } from "vuex";
     import SharedMixin from "@/mixins/shared.js";
     import ApiRequestsHelper from "@/services/api/Api";
     import * as ENDPOINTS from "@/constants/endPoints";
@@ -79,7 +79,7 @@ export default {
         }
 
         await this.saveBillingInfo();
-        //
+
         if (!_isEmpty(this.errorMessage)) {
             return next(false);
         }
@@ -91,7 +91,7 @@ export default {
               firstName: "Paul",
               lastName: "Mugabo",
               zipCode: "24450"
-          }
+          },
       }
     },
     computed: {
@@ -117,12 +117,16 @@ export default {
         }
     },
     methods: {
+        ...mapActions({
+            setBillingId: 'billingId',
+        }),
         navigateToRoute(toRouteName) {
             const toRoute = this.$router.resolve({ name: toRouteName }).route;
-            this.$route.push({ name, params: toRoute.params });
+            return this.$router.push({ name: toRoute.name });
         },
         async saveBillingInfo() {
             const apiResponse = await ApiRequestsHelper.postRecords(this, ENDPOINTS.BILLING_INFO, this.customerInfo);
+            this.setBillingId(apiResponse.billingId);
         }
     }
 

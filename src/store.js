@@ -12,6 +12,7 @@ export default new Vuex.Store({
   state: {
     currentOrderId: null,
     selectedProducts: {},
+    billingId: null,
   },
   mutations: {
       currentOrderId(state, orderId) {
@@ -40,7 +41,9 @@ export default new Vuex.Store({
 
           return true;
       },
-
+      billingId(state, billingId) {
+          state.billingId = billingId;
+      },
   },
   actions: {
       currentOrderId({commit}, orderId) {
@@ -52,6 +55,9 @@ export default new Vuex.Store({
       removeSelectedProduct({commit}, product) {
           commit('removeSelectedProduct', product);
       },
+      billingId({commit}, billingId) {
+          commit('billingId', billingId);
+      },
   },
     getters: {
         currentOrderId(state) {
@@ -59,6 +65,9 @@ export default new Vuex.Store({
         },
         selectedProducts(state) {
             return state.selectedProducts || {};
+        },
+        billingId(state) {
+            return state.billingId;
         },
     }
 })
