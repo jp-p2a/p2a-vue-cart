@@ -25,10 +25,11 @@
 </template>
 
 <script>
-    import { mapActions, mapGetters } from "vuex";
+    import { mapActions, } from "vuex";
     import {
         isEmpty as _isEmpty
     } from "lodash";
+    import SharedMixin from "@/mixins/shared.js";
 
 export default {
   name: 'Product',
@@ -38,11 +39,8 @@ export default {
           required: true
       }
     },
+    mixins: [ SharedMixin ],
     computed: {
-        ...mapGetters({
-            orderId: 'currentOrderId',
-            selectedProducts: 'selectedProducts'
-        }),
         activeRouteName() {
             return this.$route.name;
         },

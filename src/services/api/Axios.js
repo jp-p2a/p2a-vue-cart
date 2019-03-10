@@ -12,9 +12,9 @@ import MockAdapter from 'axios-mock-adapter';
 // This sets the mock adapter on the default instance
 const mock = new MockAdapter(axios);
 
-// Mock any GET request to /users
+// Mock any GET request to /products
 // arguments for reply are (status, data, headers)
-mock.onGet('/products').reply(200, {
+mock.onGet(`/${ENDPOINTS.PRODUCTS}`).reply(200, {
     data: [
 
         {
@@ -42,6 +42,20 @@ mock.onGet('/products').reply(200, {
         },
     ]
 });
+
+
+// Mock any Post request to /products
+// arguments for reply are (status, data, headers)
+mock.onPost(`/${ENDPOINTS.BILLING_INFO}`).reply(200, {
+    data: [
+
+        {
+            billingId: 444,
+        },
+    ]
+});
+
+
 
 axios.defaults.responseType = 'json';
 

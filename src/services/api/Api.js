@@ -32,4 +32,29 @@ export default class Api {
       return [];
     }
   }
+
+    static async postRecords(
+        component,
+        apiEndPoint,
+        params
+    ) {
+        component.loading = true;
+        component.errorMessage = "";
+        try {
+            const axiosInstance = AxiosHelper.getInstance();
+            const apiResponse = await axiosInstance.post(
+                apiEndPoint,
+                params
+            );
+
+           component.loading = false;
+           return apiResponse.data || {};
+        } catch (error) {
+            const { message } = error;
+            component.errorMessage = message;
+            component.loading = false;
+            return {};
+        }
+    }
+
 }

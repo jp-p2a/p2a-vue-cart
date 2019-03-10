@@ -11,7 +11,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     currentOrderId: null,
-    selectedProducts: {}
+    selectedProducts: {},
   },
   mutations: {
       currentOrderId(state, orderId) {
@@ -39,7 +39,8 @@ export default new Vuex.Store({
           Vue.delete(state.selectedProducts, id);
 
           return true;
-      }
+      },
+
   },
   actions: {
       currentOrderId({commit}, orderId) {

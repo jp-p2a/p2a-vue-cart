@@ -90,6 +90,7 @@ export default {
                 ? `navigation__steps-element--active ${navDisabledClass}`
                 : `navigation__steps-element--inactive ${navDisabledClass}`;
         },
+
     }
 }
 </script>

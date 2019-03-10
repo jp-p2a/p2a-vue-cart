@@ -5,12 +5,14 @@ import { mapActions, mapGetters } from "vuex";
 export default {
     data() {
         return {
-            routeNames: ROUTE_NAMES
+            routeNames: ROUTE_NAMES,
+            errorMessage: ""
         }
     },
     computed: {
         ...mapGetters({
-            orderId: 'currentOrderId'
+            orderId: 'currentOrderId',
+            selectedProducts: 'selectedProducts'
         }),
         activeRouteName() {
             return this.$route.name;

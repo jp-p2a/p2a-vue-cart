@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div>
 
     <div v-if="hasProducts">
 
@@ -14,8 +14,6 @@
       <product v-for="product in products"
                :key="product.id"
                :product="product" />
-
-      </table>
     </div>
   </div>
 </template>
