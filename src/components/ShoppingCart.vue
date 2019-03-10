@@ -3,6 +3,8 @@
     <div class="home">
       <navigation />
     </div>
+
+    <router-view />
   </div>
 </template>
 

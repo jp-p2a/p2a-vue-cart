@@ -65,12 +65,11 @@
 
       </div>
     </nav>
-    <router-view />
   </div>
 </template>
 
 <script>
-import SharedMixin from "../mixins/shared.js";
+import SharedMixin from "@/mixins/shared.js";
 
 export default {
   name: 'Navigation',
@@ -114,11 +113,6 @@ export default {
 
   .navigation__home-link-container:hover .custom-tooltip__navigation {
     visibility: visible;
-  }
-
-  .disabled-router-link {
-    cursor: not-allowed;
-    pointer-events: none;
   }
 
   .btn-group {

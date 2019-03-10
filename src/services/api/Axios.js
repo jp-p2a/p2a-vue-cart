@@ -19,22 +19,26 @@ mock.onGet('/products').reply(200, {
 
         {
             id: 1223,
-            name: "Mac"
+            name: "Mac",
+            price: 1200
         },
 
         {
             id: 133,
-            name: "Pixel 3"
+            name: "Pixel 3",
+            price: 1000
         },
 
         {
             id: 948,
-            name: "iPhone 10"
+            name: "iPhone 10",
+            price: 950
         },
 
         {
             id: 444,
-            name: "Samsung 10"
+            name: "Samsung 10",
+            price: 750
         },
     ]
 });
