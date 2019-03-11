@@ -1,7 +1,14 @@
-# shopping-cart
+# Shopping-cart
+
+Simple Demo for a shopping cart to illustrate some concepts with Vue-Router. 
+
+This is for the Vue-DC meetup event for March, 13, 2019. Link: https://www.meetup.com/Vue-DC/events/259360564/ .
+
+Vue-Router Docs: https://router.vuejs.org/
 
 ## Project setup
 ```
+git clone git@github.com:jp-p2a/p2a-vue-cart.git
 yarn install
 ```
 
