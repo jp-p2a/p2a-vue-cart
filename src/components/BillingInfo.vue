@@ -3,6 +3,26 @@
 
     <div v-if="errorMessage"> {{ errorMessage }}</div>
 
+    <div>
+      <h3>
+        <router-link :to="{ name: routeNames.CART }">
+          <span>Back</span>
+        </router-link>
+      </h3>
+    </div>
+
+
+    <div v-if="isStepValid">
+      <h3>
+        <router-link :to="{ name: routeNames.CONFIRM_PURCHASE }">
+          <span>Next</span>
+        </router-link>
+      </h3>
+    </div>
+
+
+    <order-products :allow-remove-products="false" />
+
     <div class="form-container">
 
     <div>
@@ -11,7 +31,7 @@
               type="text"
               placeholder="Enter First Name"
               id="input-name"
-              tabindex="2">
+              tabindex="1">
     </div>
 
       <div>
@@ -25,12 +45,59 @@
 
       <div>
       <input
-              v-model="customerInfo.zipCode"
+              v-model="customerInfo.street1"
               type="text"
-              placeholder="Enter Your ZipCode"
+              placeholder="Enter Your Address1 Info"
               id="input-name"
-              tabindex="2">
+              tabindex="3">
     </div>
+
+      <div>
+        <input
+                v-model="customerInfo.street2"
+                type="text"
+                placeholder="Enter Your Address2 Info"
+                id="input-name"
+                tabindex="4">
+      </div>
+
+      <div>
+        <input
+                v-model="customerInfo.city"
+                type="text"
+                placeholder="Enter Your City"
+                id="input-name"
+                tabindex="5">
+      </div>
+
+
+      <div>
+        <input
+                v-model="customerInfo.zipCode"
+                type="text"
+                placeholder="Enter Your ZipCode"
+                id="input-name"
+                tabindex="6">
+      </div>
+
+
+      <div>
+        <input
+                v-model="customerInfo.cardNumber"
+                type="text"
+                placeholder="Enter Your Credit Card info"
+                id="input-name"
+                tabindex="7">
+      </div>
+
+      <div>
+        <input
+                v-model="customerInfo.cardSecret"
+                type="text"
+                placeholder="Enter Your Credit Card Secret"
+                id="input-name"
+                tabindex="8">
+      </div>
 
     </div>
 
@@ -46,10 +113,14 @@
     import SharedMixin from "@/mixins/shared.js";
     import ApiRequestsHelper from "@/services/api/Api";
     import * as ENDPOINTS from "@/constants/endPoints";
+    import OrderProducts from '@/components/OrderProducts';
 
 export default {
   name: 'BillingInfo',
     mixins: [ SharedMixin ],
+    components: {
+        OrderProducts
+    },
     beforeRouteEnter (to, from, next) {
         // called before the route that renders this component is confirmed.
         // does NOT have access to `this` component instance,
@@ -90,7 +161,12 @@ export default {
           customerInfo: {
               firstName: null,
               lastName: null,
-              zipCode: null
+              street1: null,
+              street2: null,
+              city: null,
+              zipCode: null,
+              cardNumber: null,
+              cardSecret: null
           },
       }
     },

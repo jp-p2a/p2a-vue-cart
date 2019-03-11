@@ -9,15 +9,13 @@
           <p>{{ product.price }}</p>
         </td>
 
-        <td class="cell-text">
+        <td v-if="allowRemoveProducts"
+            class="cell-text">
 
-          <input
-                  :id="product.id"
-                  :key="product.id"
-                  :checked="isProductSelected"
-                  :value="isProductSelected"
-                  type="checkbox"
-                  @change="setAddProductToCart($event.target.checked)">
+          <button :id="product.id"
+                  @click.prevent="setAddProductToCart(false)">
+            Remove From Cart
+          </button>
         </td>
       </tr>
     </table>
@@ -37,7 +35,12 @@ export default {
       product: {
           type: Object,
           required: true
-      }
+      },
+      allowRemoveProducts: {
+          type: Boolean,
+          default: true
+      },
+
     },
     mixins: [ SharedMixin ],
     computed: {

@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+
     Thank You for your purchase! We have received your order.
     <br />
     Order # {{ orderId }} . We appreciate your business!

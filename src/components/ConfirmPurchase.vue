@@ -2,9 +2,20 @@
   <div class="home">
 
     <div>
-      <input type="checkbox" id="checkbox" v-model="confirmedPurchase"
-             @change="saveOrder()">
-      <label for="checkbox">Click to Confirm purchase of Products</label>
+      <h3>
+        <router-link :to="{ name: routeNames.BILLING_INFO }">
+          <span>Back</span>
+        </router-link>
+      </h3>
+    </div>
+
+    <order-products :allow-remove-products="false" />
+
+    <div>
+      <button id="confirmPurchase"
+              @click.prevent="saveOrder()">
+        I confirm that I want to purchase the above products
+      </button>
     </div>
   </div>
 </template>
@@ -17,10 +28,14 @@
     import SharedMixin from "@/mixins/shared.js";
     import ApiRequestsHelper from "@/services/api/Api";
     import * as ENDPOINTS from "@/constants/endPoints";
+    import OrderProducts from '@/components/OrderProducts';
 
 export default {
   name: 'ConfirmPurchase',
     mixins: [ SharedMixin ],
+    components: {
+        OrderProducts
+    },
     beforeRouteEnter (to, from, next) {
         // called before the route that renders this component is confirmed.
         // does NOT have access to `this` component instance,
@@ -69,6 +84,7 @@ export default {
 
         async saveOrder() {
             await this.submitOrder();
+            this.confirmedPurchase = true;
             const params = { orderId: this.orderId };
             this.$router.push({ name: this.$route.meta.next, params });
         },

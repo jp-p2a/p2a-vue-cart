@@ -2,35 +2,34 @@
   <div>
 
     <div v-if="hasProducts">
+      <order-products />
+      <div>
+        <h3>
+          <router-link :to="{ name: routeNames.BILLING_INFO }">
+            <span>Checkout</span>
+          </router-link>
+        </h3>
+      </div>
 
-      <table class="table-container">
-        <tr>
-          <th class="cell-text"><span>Product</span></th>
-          <th class="cell-text"><span>Price</span></th>
-          <th class="cell-text"><span>Add to Cart</span></th>
-        </tr>
-      </table>
-
-      <product v-for="product in products"
-               :key="product.id"
-               :product="product" />
     </div>
   </div>
 </template>
 
 <script>
+    import { mapActions, } from "vuex";
     import {
+        forEach as _forEach,
         isEmpty as _isEmpty
     } from "lodash";
 import ApiRequestsHelper from "@/services/api/Api";
     import SharedMixin from "@/mixins/shared.js";
 import * as ENDPOINTS from "@/constants/endPoints";
-    import Product from '@/components/Product';
+    import OrderProducts from '@/components/OrderProducts';
 
 export default {
   name: 'CartContainer',
     components: {
-        Product
+        OrderProducts
     },
     mixins: [ SharedMixin ],
     mounted() {
@@ -47,6 +46,9 @@ export default {
         },
     },
     methods: {
+        ...mapActions({
+            selectProduct: 'selectedProducts',
+        }),
         onMounted() {
             this.fetchProducts();
         },
@@ -55,6 +57,9 @@ export default {
 
             if (!_isEmpty(products)) {
                 this.products = products;
+                _forEach(products, (product) => {
+                    this.selectProduct(product);
+                });
             }
         },
     }
